@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+}
+
+.doc-level-pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Pagination group container */
+
+.__1__.pagination-container {
+  margin: 20px;
+}
+
+/* Pangination containers */
+
+.__2__.disabled-prev-next-container,
+.__3__.enabled-previous-container,
+.__5__.selected-page-container,
+.__7__.unselected-pages-container,
+.__8__.break-container,
+.__10__.enabled-next-container {
+  display: inline-block;
+  list-style-type: none;
+  margin: 4px;
+  padding: 10px;
+}
+
+.__2__.disabled-prev-next-container:hover,
+.__3__.enabled-previous-container:hover,
+.__5__.selected-page-container:hover,
+.__7__.unselected-pages-container:hover,
+.__8__.break-container:hover,
+.__10__.enabled-next-container:hover {
+  background: rgb(235, 235, 235);
+  border-radius: 5px;
+}
+
+.__5__.selected-page-container {
+  border: 1px solid rgb(200, 200, 200);
+  background: rgb(245, 245, 245);
+  border-radius: 5px;
+}
+
+.__2__.disabled-prev-next-container {
+  color: rgb(200, 200, 200);
+}
+
+/* Pagination links */
+
+.__4__.previous-link,
+.__6__.all-pages-link,
+.__9__.break-link,
+.__11__.next-link {
+  cursor: pointer;
+  outline: 0;
+}
+
+/* Pagination pseudo-element class labels */
+
+/* .__1__ {
+  border: 1px solid black;
+}
+
+.__1__::before {
+  content: '1cCN';
+  color: black;
+}
+
+.__3__ {
+  border: 1px solid teal;
+}
+
+.__3__::before {
+  content: '3pCN';
+  color: teal;
+}
+
+.__4__ {
+  border: 1px solid darksalmon;
+}
+
+.__4__::before {
+  content: '4pLCN';
+  color: darksalmon;
+}
+
+.__5__ {
+  border: 1px solid purple;
+}
+
+.__5__::before {
+  content: '5aCN';
+  color: purple;
+}
+
+.__6__ {
+  border: 1px solid green;
+}
+
+.__6__::before {
+  content: '6pLCN';
+  color: green;
+}
+
+.__7__ {
+  border: 1px solid blue;
+}
+
+.__7__::before {
+  content: '7pCN';
+  color: blue;
+}
+
+.__8__ {
+  border: 1px solid gray;
+}
+
+.__8__::before {
+  content: '8bCN';
+  color: gray;
+}
+
+.__9__ {
+  border: 1px solid orange;
+}
+
+.__9__::before {
+  content: '9bLCN';
+  color: orange;
+}
+
+.__10__ {
+  border: 1px solid darkmagenta;
+}
+
+.__10__::before {
+  content: '10nCN';
+  color: darkmagenta;
+}
+
+.__11__ {
+  border: 1px solid lightseagreen;
+}
+
+.__11__::before {
+  content: '11nLCN';
+  color: lightseagreen;
+}
+
+.__2__ {
+  border: 1px solid darkred;
+}
+
+.__2__::before {
+  content: '2dCN';
+  color: darkred;
+} */
