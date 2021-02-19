@@ -2,9 +2,29 @@
   box-sizing: border-box;
 }
 
+.form-container,
 .doc-level-pagination-container {
   display: flex;
   justify-content: center;
+}
+
+.search-input-field {
+  margin: 6px;
+  outline: 0;
+}
+
+.reset-button-container {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+}
+
+.reset-button {
+  position: relative;
+  right: 88px;
+  border: 0;
+  background: none;
+  outline: 0;
 }
 
 /* Pagination group container */
@@ -24,7 +44,6 @@
   display: inline-block;
   list-style-type: none;
   margin: 4px;
-  padding: 10px;
 }
 
 .__2__.disabled-prev-next-container:hover,
@@ -53,8 +72,11 @@
 .__6__.all-pages-link,
 .__9__.break-link,
 .__11__.next-link {
+  display: inline-block;
   cursor: pointer;
   outline: 0;
+  padding: 10px;
+  user-select: none;
 }
 
 /* Pagination pseudo-element class labels */

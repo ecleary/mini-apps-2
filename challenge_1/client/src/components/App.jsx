@@ -10,15 +10,22 @@ export default class App extends Component {
       data: [],
       offset: 0,
       itemsPerPage: 10,
+      inputSearchText: '',
+      submittedSearchText: '',
     };
     this.getData = this.getData.bind(this);
+    this.handleInputText = this.handleInputText.bind(this);
+    this.handleSubmitText = this.handleSubmitText.bind(this);
+    this.handleClearInput = this.handleClearInput.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   getData() {
-    const { offset, itemsPerPage } = this.state;
+    const { offset, itemsPerPage, submittedSearchText } = this.state;
     $.ajax({
-      url: `/events?_page=${offset}&_limit=${itemsPerPage}`,
+      url: submittedSearchText === ''
+        ? `/events?_page=${offset + 1}&_limit=${itemsPerPage}`
+        : `/events?_page=${offset + 1}&_limit=${itemsPerPage}&q=${submittedSearchText}`,
       method: 'GET',
       success: (data, textStatus, jqXhr) => {
         const headers = jqXhr.getAllResponseHeaders();
@@ -36,6 +43,35 @@ export default class App extends Component {
     this.getData();
   }
 
+  handleInputText({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleSubmitText(event) {
+    event.preventDefault();
+    const { inputSearchText } = this.state;
+    if (inputSearchText !== '') {
+      this.setState({
+        submittedSearchText: inputSearchText,
+      }, this.getData);
+    }
+  }
+
+  handleClearInput() {
+    const { submittedSearchText } = this.state;
+    this.setState({
+      inputSearchText: '',
+    });
+    if (submittedSearchText !== '') {
+      this.setState({
+        submittedSearchText: '',
+      }, this.getData);
+    }
+  }
+
   handlePageChange({ selected }) {
     const { itemsPerPage } = this.state;
     this.setState({
@@ -44,19 +80,40 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, pageCount } = this.state;
+    const { data, pageCount, inputSearchText } = this.state;
     const events = data.map((eventData) => {
       return <Event key={JSON.stringify(eventData)} eventData={eventData} />;
     });
 
     return (
       <div>
+        <div className="form-container">
+          <form onSubmit={this.handleSubmitText} onReset={this.handleClearInput} >
+            <label>
+              Search events:
+              <input
+                type="text"
+                placeholder="Enter search term"
+                name="inputSearchText"
+                value={inputSearchText}
+                onChange={this.handleInputText}
+                className="search-input-field"
+              />
+              <input type="submit" value="Search" />
+              <div className="reset-button-container">
+                {inputSearchText === ''
+                  ? null
+                  : <input type="reset" value="×" className="reset-button" />}
+              </div>
+            </label>
+          </form>
+        </div>
         {events}
         <div className="doc-level-pagination-container">
           <ReactPaginate
             previousLabel={'←'}
             nextLabel={'→'}
-            breakLabel={'...'}
+            breakLabel={'···'}
             pageCount={pageCount}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
